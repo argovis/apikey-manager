@@ -1,59 +1,156 @@
-<h1>New Account Registration</h1>
-<p>Brand new to Argovis? Get an API key here to start issuing requests for data.</p>
-<form action="/register_key" method="post" enctype="multipart/form-data">
-	<div>
-		<label for="first">First Name:</label>
-		<input type='text' id='first' name='first' required="required">
-	</div>
-	<div>
-		<label for="last">Last Name:</label>
-		<input type='text' id='last' name='last' required="required">
-	</div>
-	<div>
-		<label for="last">Affiliation:</label>
-		<input type='text' id='affiliation' name='affiliation'>
-	</div>
-	<div>
-		<label for="email">Enter your email:</label>
-		<input type='email' id='email' name='email' required="required">
-	</div>
-	<input type='submit'>
-</form>
+<html>
+	<head>
+		<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+		<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
+	</head>
 
-<h1>Forgot your API Token?</h1>
-<p>Enter your email and submit, and if we have an API token for that address, we'll send it to you.</p>
-<form action="/recover_key" method="post" enctype="multipart/form-data">
-	<div>
-		<label for="recover-email">Enter your email:</label>
-		<input type='email' id='recover-email' name='recover-email' required="required">
-	</div>
-	<input type='submit'>
-</form>
+	<body>
+		<nav class="navbar navbar-light bg-light" style="background-color: #673ab7 !important">
+		  <div class="container">
+		    <a class="navbar-brand" href="#">
+		      <img src="Argovis_logo-1.png" alt="" style='max-width:100px'>
+		    </a>
+		  </div>
+		</nav>
 
-<h1>Need to rotate your API Token?</h1>
-<p>If you think your API token has been exposed to a third party, provide it and your email and we'll send you a fresh token.</p>
-<form action="/rotate_key" method="post" enctype="multipart/form-data">
-	<div>
-		<label for="rotate-email">Enter your email:</label>
-		<input type='email' id='rotate-email' name='rotate-email' required="required">
-	</div>
-	<div>
-		<label for="rotate-key">Enter your current API key:</label>
-		<input type='text' id='rotate-key' name='rotate-key' required="required">
-	</div>
-	<input type='submit'>
-</form>
+		<div class='container'>
+			<h1>Argovis API Key Management</h1>
 
-<h1>Need to deactivate your API Token?</h1>
-<p>If you're no longer using Argovis, enter your email and API token, and we'll deactivate it.</p>
-<form action="/delete_key" method="post" enctype="multipart/form-data">
-	<div>
-		<label for="delete-email">Enter your email:</label>
-		<input type='email' id='delete-email' name='delete-email' required="required">
-	</div>
-	<div>
-		<label for="delete-key">Enter your current API key:</label>
-		<input type='text' id='delete-key' name='delete-key' required="required">
-	</div>
-	<input type='submit'>
-</form>
+			<p>In order to allocate our limited resources fairly to all our users, API requests should be accompanied by a free <i>API token</i> that identifies the requester, allowing us to prevent anyone from making so many requests that they make Argovis unusable for everyone else. Choose 'New Account Registration' below to get started.</p>
+
+			<p>Current API request limits are in the table below. <i>Burst</i> limits are the number of requests you can make in a rapid burst, like in a loop in your code; this is typically relevant for smaller amounts of data. <i>Sustained</i> limits are how frequently you can make requests indefinitely; this is typically relevant for larger downloads.</p>
+
+			<table class="table">
+			  <thead>
+			    <tr>
+			      <th scope="col">Request Type</th>
+			      <th scope="col">Burst</th>
+			      <th scope="col">Sustained</th>
+			      <th scope="col">Example Route</th>
+			    </tr>
+			  </thead>
+			  <tbody>
+			    <tr>
+			      <th scope="row">Metadata Only</th>
+			      <td>100 requests</td>
+			      <td>2 request / second</td>
+			      <td><pre>/profiles?startDate=2021-01-01T00:00:00Z&endDate=2021-01-02T00:00:00Z</pre></td>
+			    </tr>
+			    <tr>
+			      <th scope="row">Full Data</th>
+			      <td>10 requests</td>
+			      <td>1 request / 5 seconds</td>
+			      <td><pre>/profiles?startDate=2021-01-01T00:00:00Z&endDate=2021-01-02T00:00:00Z&coreMeasurements=all</pre></td>
+			    </tr>
+			  </tbody>
+			</table>
+
+			<p><b>If you see HTTP 403 errors, you have probably exceeded your request limit!</b> Wait a minute for your allocation to refill, and add small delays between requests in large loops.</p>
+
+			<p>As always, please reach out to argovis@colorado.edu any time if you need help or have feedback, and we will try to get in touch.</p>
+
+			<div class="accordion" id="accordionExample">
+			  <div class="accordion-item">
+			    <h2 class="accordion-header" id="headingOne">
+			      <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+			        New Account Registration
+			      </button>
+			    </h2>
+			    <div id="collapseOne" class="accordion-collapse collapse show" aria-labelledby="headingOne" data-bs-parent="#accordionExample">
+			      <div class="accordion-body">
+					<h1>New Account Registration</h1>
+					<p>Brand new to Argovis? Get an API key here to start issuing requests for data.</p>
+					<form action="/register_key" method="post" enctype="multipart/form-data">
+						<div>
+							<label for="first">First Name:</label>
+							<input type='text' id='first' name='first' required="required">
+						</div>
+						<div>
+							<label for="last">Last Name:</label>
+							<input type='text' id='last' name='last' required="required">
+						</div>
+						<div>
+							<label for="last">Affiliation:</label>
+							<input type='text' id='affiliation' name='affiliation'>
+						</div>
+						<div>
+							<label for="email">Email:</label>
+							<input type='email' id='email' name='email' required="required">
+						</div>
+						<input type='submit'>
+					</form>
+			      </div>
+			    </div>
+			  </div>
+			  <div class="accordion-item">
+			    <h2 class="accordion-header" id="headingTwo">
+			      <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+			        Forgot Your API Key?
+			      </button>
+			    </h2>
+			    <div id="collapseTwo" class="accordion-collapse collapse" aria-labelledby="headingTwo" data-bs-parent="#accordionExample">
+			      <div class="accordion-body">
+					<h1>Forgot Your API Key?</h1>
+					<p>Enter your email and submit, and if we have an API key for that address, we'll send it to you.</p>
+					<form action="/recover_key" method="post" enctype="multipart/form-data">
+						<div>
+							<label for="recover-email">Email:</label>
+							<input type='email' id='recover-email' name='recover-email' required="required">
+						</div>
+						<input type='submit'>
+					</form>
+			      </div>
+			    </div>
+			  </div>
+			  <div class="accordion-item">
+			    <h2 class="accordion-header" id="headingThree">
+			      <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+			        Need to Rotate Your API Key?
+			      </button>
+			    </h2>
+			    <div id="collapseThree" class="accordion-collapse collapse" aria-labelledby="headingThree" data-bs-parent="#accordionExample">
+			      <div class="accordion-body">
+					<h1>Need to Rotate Your API Key?</h1>
+					<p>If you think your API key has been exposed to a third party, provide it and your email and we'll send you a fresh key.</p>
+					<form action="/rotate_key" method="post" enctype="multipart/form-data">
+						<div>
+							<label for="rotate-email">Email:</label>
+							<input type='email' id='rotate-email' name='rotate-email' required="required">
+						</div>
+						<div>
+							<label for="rotate-key">Current API key:</label>
+							<input type='text' id='rotate-key' name='rotate-key' required="required">
+						</div>
+						<input type='submit'>
+					</form>
+			      </div>
+			    </div>
+			  </div>
+			  <div class="accordion-item">
+			    <h2 class="accordion-header" id="headingFour">
+			      <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseFour" aria-expanded="false" aria-controls="collapseFour">
+			        Need to Deactivate Your API Key?
+			      </button>
+			    </h2>
+			    <div id="collapseFour" class="accordion-collapse collapse" aria-labelledby="headingFour" data-bs-parent="#accordionExample">
+			      <div class="accordion-body">
+					<h1>Need to Deactivate Your API Key?</h1>
+					<p>If you're no longer using Argovis, enter your email and API key, and we'll deactivate it.</p>
+					<form action="/delete_key" method="post" enctype="multipart/form-data">
+						<div>
+							<label for="delete-email">Email:</label>
+							<input type='email' id='delete-email' name='delete-email' required="required">
+						</div>
+						<div>
+							<label for="delete-key">Current API key:</label>
+							<input type='text' id='delete-key' name='delete-key' required="required">
+						</div>
+						<input type='submit'>
+					</form>
+			      </div>
+			    </div>
+			  </div>
+			</div>
+		</div>
+	</body>
+</html>

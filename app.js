@@ -11,6 +11,7 @@ const user = require('./models/user');
 
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'ejs');
+app.use(express.static('public'))
 
 const sendit = function(msg, logmsg){
     return sgMail.send(msg).then(() => {console.log(Date.now() + ': ' + logmsg )})
