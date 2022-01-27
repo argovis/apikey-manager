@@ -4,8 +4,8 @@
 		<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
 	</head>
 
-	<body>
-		<nav class="navbar navbar-light bg-light" style="background-color: #673ab7 !important">
+	<body class="d-flex flex-column min-vh-100">
+		<nav class="navbar navbar-light bg-light" style="background-color: #673ab7 !important; margin-bottom: 1em;">
 		  <div class="container">
 		    <a class="navbar-brand" href="#">
 		      <img src="Argovis_logo-1.png" alt="" style='max-width:100px'>
@@ -13,10 +13,10 @@
 		  </div>
 		</nav>
 
-		<div class='container'>
+		<div class='container' style='padding: 0 10vw 0 10vw;'>
 			<h1>Argovis API Key Management</h1>
 
-			<p>In order to allocate our limited resources fairly to all our users, API requests should be accompanied by a free <i>API token</i> that identifies the requester, allowing us to prevent anyone from making so many requests that they make Argovis unusable for everyone else. Choose 'New Account Registration' below to get started.</p>
+			<p>In order to allocate our limited resources fairly to all our users, API requests should be accompanied by a free <i>API key</i> that identifies the requester, allowing us to prevent anyone from making so many requests that they make Argovis unusable for everyone else. Choose 'New Account Registration' below to get started.</p>
 
 			<p>Current API request limits are in the table below. <i>Burst</i> limits are the number of requests you can make in a rapid burst, like in a loop in your code; this is typically relevant for smaller amounts of data. <i>Sustained</i> limits are how frequently you can make requests indefinitely; this is typically relevant for larger downloads.</p>
 
@@ -53,31 +53,25 @@
 			  <div class="accordion-item">
 			    <h2 class="accordion-header" id="headingOne">
 			      <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
-			        New Account Registration
+			      	<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-stars" viewBox="0 0 16 16">
+  <path d="M7.657 6.247c.11-.33.576-.33.686 0l.645 1.937a2.89 2.89 0 0 0 1.829 1.828l1.936.645c.33.11.33.576 0 .686l-1.937.645a2.89 2.89 0 0 0-1.828 1.829l-.645 1.936a.361.361 0 0 1-.686 0l-.645-1.937a2.89 2.89 0 0 0-1.828-1.828l-1.937-.645a.361.361 0 0 1 0-.686l1.937-.645a2.89 2.89 0 0 0 1.828-1.828l.645-1.937zM3.794 1.148a.217.217 0 0 1 .412 0l.387 1.162c.173.518.579.924 1.097 1.097l1.162.387a.217.217 0 0 1 0 .412l-1.162.387A1.734 1.734 0 0 0 4.593 5.69l-.387 1.162a.217.217 0 0 1-.412 0L3.407 5.69A1.734 1.734 0 0 0 2.31 4.593l-1.162-.387a.217.217 0 0 1 0-.412l1.162-.387A1.734 1.734 0 0 0 3.407 2.31l.387-1.162zM10.863.099a.145.145 0 0 1 .274 0l.258.774c.115.346.386.617.732.732l.774.258a.145.145 0 0 1 0 .274l-.774.258a1.156 1.156 0 0 0-.732.732l-.258.774a.145.145 0 0 1-.274 0l-.258-.774a1.156 1.156 0 0 0-.732-.732L9.1 2.137a.145.145 0 0 1 0-.274l.774-.258c.346-.115.617-.386.732-.732L10.863.1z"/>
+</svg>
+			        <b>New Account Registration</b>
 			      </button>
 			    </h2>
 			    <div id="collapseOne" class="accordion-collapse collapse show" aria-labelledby="headingOne" data-bs-parent="#accordionExample">
 			      <div class="accordion-body">
-					<h1>New Account Registration</h1>
 					<p>Brand new to Argovis? Get an API key here to start issuing requests for data.</p>
 					<form action="/register_key" method="post" enctype="multipart/form-data">
-						<div>
-							<label for="first">First Name:</label>
-							<input type='text' id='first' name='first' required="required">
-						</div>
-						<div>
-							<label for="last">Last Name:</label>
-							<input type='text' id='last' name='last' required="required">
-						</div>
-						<div>
-							<label for="last">Affiliation:</label>
-							<input type='text' id='affiliation' name='affiliation'>
-						</div>
-						<div>
-							<label for="email">Email:</label>
-							<input type='email' id='email' name='email' required="required">
-						</div>
-						<input type='submit'>
+						<label for="first" class="form-label">First Name:</label>
+						<input type='text' id='first' name='first' required="required" class="form-control">
+						<label for="last" class="form-label">Last Name:</label>
+						<input type='text' id='last' name='last' required="required" class="form-control">
+						<label for="last" class="form-label">Affiliation:</label>
+						<input type='text' id='affiliation' name='affiliation' class="form-control">
+						<label for="email" class="form-label">Email:</label>
+						<input type='email' id='email' name='email' required="required" class="form-control">
+						<button type="submit" class="btn btn-primary" style='margin-top:1em;'>Submit</button>
 					</form>
 			      </div>
 			    </div>
@@ -85,19 +79,16 @@
 			  <div class="accordion-item">
 			    <h2 class="accordion-header" id="headingTwo">
 			      <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
-			        Forgot Your API Key?
+			        <b>Forgot Your API Key?</b>
 			      </button>
 			    </h2>
 			    <div id="collapseTwo" class="accordion-collapse collapse" aria-labelledby="headingTwo" data-bs-parent="#accordionExample">
 			      <div class="accordion-body">
-					<h1>Forgot Your API Key?</h1>
 					<p>Enter your email and submit, and if we have an API key for that address, we'll send it to you.</p>
 					<form action="/recover_key" method="post" enctype="multipart/form-data">
-						<div>
-							<label for="recover-email">Email:</label>
-							<input type='email' id='recover-email' name='recover-email' required="required">
-						</div>
-						<input type='submit'>
+						<label for="recover-email" class="form-label">Email:</label>
+						<input type='email' id='recover-email' name='recover-email' required="required" class="form-control">
+						<button type="submit" class="btn btn-primary" style='margin-top:1em;'>Submit</button>
 					</form>
 			      </div>
 			    </div>
@@ -105,23 +96,18 @@
 			  <div class="accordion-item">
 			    <h2 class="accordion-header" id="headingThree">
 			      <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
-			        Need to Rotate Your API Key?
+			        <b>Need to Rotate Your API Key?</b>
 			      </button>
 			    </h2>
 			    <div id="collapseThree" class="accordion-collapse collapse" aria-labelledby="headingThree" data-bs-parent="#accordionExample">
 			      <div class="accordion-body">
-					<h1>Need to Rotate Your API Key?</h1>
 					<p>If you think your API key has been exposed to a third party, provide it and your email and we'll send you a fresh key.</p>
 					<form action="/rotate_key" method="post" enctype="multipart/form-data">
-						<div>
-							<label for="rotate-email">Email:</label>
-							<input type='email' id='rotate-email' name='rotate-email' required="required">
-						</div>
-						<div>
-							<label for="rotate-key">Current API key:</label>
-							<input type='text' id='rotate-key' name='rotate-key' required="required">
-						</div>
-						<input type='submit'>
+						<label for="rotate-email" class="form-label">Email:</label>
+						<input type='email' id='rotate-email' name='rotate-email' required="required" class="form-control">
+						<label for="rotate-key" class="form-label">Current API key:</label>
+						<input type='text' id='rotate-key' name='rotate-key' required="required" class="form-control">
+						<button type="submit" class="btn btn-primary" style='margin-top:1em;'>Submit</button>
 					</form>
 			      </div>
 			    </div>
@@ -129,28 +115,27 @@
 			  <div class="accordion-item">
 			    <h2 class="accordion-header" id="headingFour">
 			      <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseFour" aria-expanded="false" aria-controls="collapseFour">
-			        Need to Deactivate Your API Key?
+			        <b>Need to Deactivate Your API Key?</b>
 			      </button>
 			    </h2>
 			    <div id="collapseFour" class="accordion-collapse collapse" aria-labelledby="headingFour" data-bs-parent="#accordionExample">
 			      <div class="accordion-body">
-					<h1>Need to Deactivate Your API Key?</h1>
 					<p>If you're no longer using Argovis, enter your email and API key, and we'll deactivate it.</p>
 					<form action="/delete_key" method="post" enctype="multipart/form-data">
-						<div>
-							<label for="delete-email">Email:</label>
-							<input type='email' id='delete-email' name='delete-email' required="required">
-						</div>
-						<div>
-							<label for="delete-key">Current API key:</label>
-							<input type='text' id='delete-key' name='delete-key' required="required">
-						</div>
-						<input type='submit'>
+						<label for="delete-email" class="form-label">Email:</label>
+						<input type='email' id='delete-email' name='delete-email' required="required" class="form-control">
+						<label for="delete-key" class="form-label">Current API key:</label>
+						<input type='text' id='delete-key' name='delete-key' required="required" class="form-control">
+						<button type="submit" class="btn btn-primary" style='margin-top:1em;'>Submit</button>
 					</form>
 			      </div>
 			    </div>
 			  </div>
 			</div>
 		</div>
+
+		<footer class="mt-auto">
+		  <div class="text-center p-4" style="margin-top: 1em; background-color: #673ab7; color: #ffffff">© 2022 Argovis</div>
+		</footer>
 	</body>
 </html>
