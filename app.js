@@ -90,6 +90,8 @@ app.post('/recover_key', upload.none(), function(req, res, next){
             }
             sendit(msg, 'Forgotten key email sent to ' + msg.to)
             .catch((error) => {console.error(error)})
+        }else{
+            console.log(Date.now() + ': ' + ' failed key recovery for email ' + req.body['recover-email'])
         }
         res.render('recover-success')        
     }).catch(function(response){
@@ -103,23 +105,48 @@ app.post('/rotate_key', upload.none(), function(req, res, next){
 
     let k = crypto.randomBytes(20).toString('hex')
     user.findOneAndUpdate({"email": req.body['rotate-email'], "key": req.body['rotate-key']}, {"key": k},{"new": true}).then(function(response){
-        // TBD: send response.key to response.email if an update was made
-        console.log(response)
-        res.render('rotate-success')
+        if(response){
+            var msg = {
+              to: req.body['rotate-email'],
+              from: 'argovis@colorado.edu',
+              subject: 'Rotated Argovis API Key',
+              html: "<p>Your Argovis API key has been rotated. Your current API key is: " + response.key + `</p>
+              <p>You may rotate this key again any time at Link_TBD.</p>`
+            }
+            sendit(msg, 'Rotated key email sent to ' + msg.to)
+            .catch((error) => {console.error(error)})
+        }else{
+            console.log(Date.now() + ': ' + ' failed key rotate for email ' + req.body['rotate-email'] + ' and key ' + req.body['rotate-key'] )
+        }
+        res.render('rotate-success')        
     }).catch(function(response){
-        return null
-    })
+        console.log('Excpetion when rotating key for user ' + req.body['rotate-email'] + ":")
+        console.log(response)
+        res.render('fail')      
+    });
 });
 
 app.post('/delete_key', upload.none(), function(req, res, next){
 
     user.deleteOne({"email": req.body['delete-email'], "key": req.body['delete-key']}).then(function(response){
-        // TBD: email confirming deletion
-        console.log(response)
-        res.render('delete-success')
+        if(response){
+            var msg = {
+              to: req.body['delete-email'],
+              from: 'argovis@colorado.edu',
+              subject: 'Deleted Argovis API Key',
+              html: "<p>Your Argovis API key has been deleted. We're sad to see you go! Please send any feedback to argovis@colorado.edu on how we could make this service more useful for you, and we hope to see you again in future."
+            }
+            sendit(msg, 'Deleted key email sent to ' + msg.to)
+            .catch((error) => {console.error(error)})
+        }else{
+            console.log(Date.now() + ': ' + ' failed key deletion for email ' + req.body['delete-email'] + ' and key ' + req.body['delete-key'] )
+        }
+        res.render('delete-success')        
     }).catch(function(response){
-        return null
-    })
+        console.log('Excpetion when deleting key for user ' + req.body['delete-email'] + ":")
+        console.log(response)
+        res.render('fail')      
+    });
 });
 
 module.exports = app;
