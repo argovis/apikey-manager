@@ -39,7 +39,7 @@ app.post('/register_key', upload.none(), function(req, res, next){
               html: "<p>Welcome to Argovis! Your API key is: " + k + `
 To use this, add it to the header of requests to the Argovis API under the "x-argokey" header. For example, try this at the bash shell:</p>
 
-<pre>curl -H "x-argokey: <your API token>" "http://argovis-api-atoc-argovis-dev.apps.containers02.colorado.edu/profiles?ids=7900500_120"</pre>
+<pre>curl -H "x-argokey: &lt;your API token&gt;" "http://argovis-api-atoc-argovis-dev.apps.containers02.colorado.edu/profiles?ids=7900500_120"</pre>
               
 <p><b>Note that requests are rate limited.</b> These limits will be adjusted based on load, but you can in general expect to be able to make metadata-only requests faster than full profile or grid requests. If your requests fail with HTTP code 403, especially if you are making many requests in a loop, consider putting a short delay between them.</p>
 
