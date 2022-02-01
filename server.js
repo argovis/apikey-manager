@@ -15,7 +15,7 @@ const mongooseOptions = {
 };
 
 mongoose.connect(mongoDB, mongooseOptions)
-.catch(error => { console.log('mongoose connect error: ', error.message); });
+.catch(error => { console.log('mongoose connect error: ', error.message); process.exit(1)});
 
 let db = mongoose.connection;
 db.on('error', debug.bind(console, 'MongoDB connection error:'));
