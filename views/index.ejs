@@ -18,7 +18,7 @@
 
 			<p>In order to allocate our limited resources fairly to all our users, API requests should be accompanied by a free <i>API key</i> that identifies the requester, allowing us to prevent anyone from making so many requests that they make Argovis unusable for everyone else. Choose 'New Account Registration' below to get started.</p>
 
-			<p>Current API request limits are in the table below. <i>Burst</i> limits are the number of requests you can make in a rapid burst, like in a loop in your code; this is typically relevant for smaller amounts of data. <i>Sustained</i> limits are how frequently you can make requests indefinitely; this is typically relevant for larger downloads.</p>
+			<p>Current API request limits are in the table below. <i>Burst</i> limits are the number of requests you can make in a rapid asynchronous burst (ie in parallel); this is typically useful for quickly requesting a modest amount of data. <i>Sustained</i> limits are how frequently you can make requests indefinitely, typically in a synchronous (ie in series) loop; this is typically relevant when downloading larger amounts of data.</p>
 
 			<table class="table">
 			  <thead>
@@ -38,14 +38,14 @@
 			    </tr>
 			    <tr>
 			      <th scope="row">Full Data</th>
-			      <td>10 requests</td>
-			      <td>1 request / 5 seconds</td>
+			      <td>5 requests</td>
+			      <td>1 request / 10 seconds</td>
 			      <td><pre>/profiles?startDate=2021-01-01T00:00:00Z&endDate=2021-01-02T00:00:00Z&coreMeasurements=all</pre></td>
 			    </tr>
 			  </tbody>
 			</table>
 
-			<p><b>If you see HTTP 403 errors, you have probably exceeded your request limit!</b> Wait a minute for your allocation to refill, and add small delays between requests in large loops.</p>
+			<p><b>If you see HTTP 403 errors, you have probably exceeded your request limit with too many concurrent requests!</b> Wait a minute for your allocation to automatically refill, and then try again with less requests in parallel.</p>
 
 			<p>As always, please reach out to argovis@colorado.edu any time if you need help or have feedback, and we will try to get in touch.</p>
 
