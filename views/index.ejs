@@ -18,7 +18,7 @@
 
 			<p>In order to allocate our limited resources fairly to all our users, API requests should be accompanied by a free <i>API key</i> that identifies the requester, allowing us to prevent anyone from making so many requests that they make Argovis unusable for everyone else. Choose 'New Account Registration' below to get started.</p>
 
-			<p>Current API request limits are in the table below. <i>Burst</i> limits are the number of requests you can make in a rapid asynchronous burst (ie in parallel); this is typically useful for quickly requesting a modest amount of data. <i>Sustained</i> limits are how frequently you can make requests indefinitely, typically in a synchronous (ie in series) loop; this is typically relevant when downloading larger amounts of data.</p>
+			<p>Current API request limits are in the table below. <i>Burst</i> limits are the number of requests you can make in a rapid asynchronous burst (ie in parallel); this is typically useful for quickly requesting a modest amount of data. <i>Sustained</i> limits are how frequently you can make requests indefinitely, typically in a synchronous (ie in series) loop; this is typically relevant when downloading larger amounts of data. These restrictions will be adjusted based on demand and resourcing.</p>
 
 			<table class="table">
 			  <thead>
@@ -38,9 +38,9 @@
 			    </tr>
 			    <tr>
 			      <th scope="row">Full Data</th>
-			      <td>5 requests</td>
-			      <td>1 request / 10 seconds</td>
-			      <td><pre>/profiles?startDate=2021-01-01T00:00:00Z&endDate=2021-01-02T00:00:00Z&coreMeasurements=all</pre></td>
+			      <td>100 requests</td>
+			      <td>2 requests / second</td>
+			      <td><pre>/profiles?startDate=2021-01-01T00:00:00Z&endDate=2021-01-02T00:00:00Z&data=pres,doxy</pre></td>
 			    </tr>
 			  </tbody>
 			</table>
