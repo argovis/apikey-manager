@@ -1,4 +1,4 @@
-FROM node:17.9.1
+FROM node:18.5.0
 RUN apt-get update -y
 RUN apt-get install -y openssl/stable-security
 
