@@ -16,36 +16,19 @@
 		<div class='container' style='padding: 0 10vw 0 10vw;'>
 			<h1>Argovis API Key Management</h1>
 
-			<p>In order to allocate our limited resources fairly to all our users, API requests should be accompanied by a free <i>API key</i> that identifies the requester, allowing us to prevent anyone from making so many requests that they make Argovis unusable for everyone else. Choose 'New Account Registration' below to get started.</p>
+			<p>In order to allocate our limited resources fairly to all our users, API requests should be accompanied by a free <i>API key</i> that identifies the requester, allowing us to prevent anyone from making so many requests so quickly that they make Argovis unusable for everyone else. Choose 'New Account Registration' below to get started.</p>
 
-			<p>Current API request limits are in the table below. <i>Burst</i> limits are the number of requests you can make in a rapid asynchronous burst (ie in parallel); this is typically useful for quickly requesting a modest amount of data. <i>Sustained</i> limits are how frequently you can make requests indefinitely, typically in a synchronous (ie in series) loop; this is typically relevant when downloading larger amounts of data. These restrictions will be adjusted based on demand and resourcing.</p>
+			<p>In general, requests made in series (that is, letting your first request finish before issuing the next), should resolve without being cut off by the rate limiter, indefinitely. Making requests in parallel is also possible; exactly how many will be allowed is a function of their estimated size and complexity. Things that reduce estimated request size (and therefore allow you to make more such requests in less time) are:</p>
 
-			<table class="table">
-			  <thead>
-			    <tr>
-			      <th scope="col">Request Type</th>
-			      <th scope="col">Burst</th>
-			      <th scope="col">Sustained</th>
-			      <th scope="col">Example Route</th>
-			    </tr>
-			  </thead>
-			  <tbody>
-			    <tr>
-			      <th scope="row">Metadata Only</th>
-			      <td>100 requests</td>
-			      <td>2 request / second</td>
-			      <td><pre>/profiles?startDate=2021-01-01T00:00:00Z&endDate=2021-01-02T00:00:00Z</pre></td>
-			    </tr>
-			    <tr>
-			      <th scope="row">Full Data</th>
-			      <td>100 requests</td>
-			      <td>2 requests / second</td>
-			      <td><pre>/profiles?startDate=2021-01-01T00:00:00Z&endDate=2021-01-02T00:00:00Z&data=pres,doxy</pre></td>
-			    </tr>
-			  </tbody>
-			</table>
+			<ul>
+				<li>Requesting only metadata or vocabulary data</li>
+				<li>Limiting data requests to small geographic and / or short temporal regions</li>
+				<li>Not including per-level measurements in data requests (ie by omitting the <code>data</code> key)</li>
+				<li>Requesting individual data documents by ID</li>
+				<li>Requesting small sets of data by groups such as platform or WOCE line as applicable</li>
+			</ul>
 
-			<p><b>If you see HTTP 403 errors, you have probably exceeded your request limit with too many concurrent requests!</b> Wait a minute for your allocation to automatically refill, and then try again with less requests in parallel.</p>
+			<p><b>If you see HTTP 429 errors, you have probably exceeded your request limit with too many concurrent requests!</b> Wait a minute for your allocation to automatically refill, and then try again with less requests in parallel, or by simplifying your requests where possible via the options above.</p>
 
 			<p>As always, please reach out to argovis@colorado.edu any time if you need help or have feedback, and we will try to get in touch.</p>
 
