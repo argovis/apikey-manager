@@ -39,11 +39,11 @@ app.post('/register_key', upload.none(), function(req, res, next){
               html: "<p>Welcome to Argovis! Your API key is: " + k + `
 To use this, add it to the header of requests to the Argovis API under the "x-argokey" header. For example, try this at the bash shell:</p>
 
-<pre>curl -H "x-argokey: &lt;your API token&gt;" "http://argovis-api-atoc-argovis-dev.apps.containers02.colorado.edu/profiles?ids=7900500_120"</pre>
+<pre>curl -H "x-argokey: &lt;your API token&gt;" "https://argovisbeta01.colorado.edu/argo?platform=6902740"</pre>
               
-<p><b>Note that requests are rate limited.</b> These limits will be adjusted based on load, but you can in general expect to be able to make metadata-only requests faster than full profile or grid requests. If your requests fail with HTTP code 403, especially if you are making many requests in a loop, consider putting a short delay between them.</p>
+<p><b>Note that requests are rate limited.</b> These limits will be adjusted based on load, but you can in general expect to be able to make metadata-only requests faster than full profile or grid requests. If your requests fail with HTTP code 429, especially if you are making many requests in a loop, consider putting a short delay between them.</p>
 
-<p>Full API docs can be found at <a href='http://argovis-api-atoc-argovis-dev.apps.containers02.colorado.edu/docs'>http://argovis-api-atoc-argovis-dev.apps.containers02.colorado.edu/docs</a>; don't hesitate to reach out to the team at argovis@colorado.edu if you run into trouble or have bug reports or feature requests.</p>`
+<p>Full API docs can be found at <a href='https://argovisbeta01.colorado.edu/docs/'>https://argovisbeta01.colorado.edu/docs/</a>; don't hesitate to reach out to the team at argovis@colorado.edu if you run into trouble or have bug reports or feature requests.</p>`
             }
             sendit(msg, 'Welcome email sent to ' + msg.to)
             .then(()=>res.render('reg-success'))
@@ -64,7 +64,7 @@ To use this, add it to the header of requests to the Argovis API under the "x-ar
                       from: 'argovis@colorado.edu',
                       subject: 'Your Argovis API Key - Resend',
                       html: "<p>Someone just tried to register an Argovis API key for this email address. Your current API key is: " + u[0].key + `</p>
-                      <p>You may rotate this key at Link_TBD.</p>`
+                      <p>You may rotate this key at https://argovisbeta02.colorado.edu/.</p>`
                     }
                     sendit(msg, 'Registration dupe email sent to ' + msg.to)
                     .then(()=>res.render('reg-dupe'))
@@ -87,7 +87,7 @@ app.post('/recover_key', upload.none(), function(req, res, next){
               from: 'argovis@colorado.edu',
               subject: 'Forgotten Argovis API Key',
               html: "<p>Did you forget your Argovis API key? Your current API key is: " + response.key + `</p>
-              <p>You may rotate this key at Link_TBD.</p>`
+              <p>You may rotate this key at https://argovisbeta02.colorado.edu/.</p>`
             }
             sendit(msg, 'Forgotten key email sent to ' + msg.to)
             .catch((error) => {console.error(error)})
@@ -112,7 +112,7 @@ app.post('/rotate_key', upload.none(), function(req, res, next){
               from: 'argovis@colorado.edu',
               subject: 'Rotated Argovis API Key',
               html: "<p>Your Argovis API key has been rotated. Your current API key is: " + response.key + `</p>
-              <p>You may rotate this key again any time at Link_TBD.</p>`
+              <p>You may rotate this key again any time at https://argovisbeta02.colorado.edu/.</p>`
             }
             sendit(msg, 'Rotated key email sent to ' + msg.to)
             .catch((error) => {console.error(error)})
