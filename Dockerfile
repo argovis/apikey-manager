@@ -1,6 +1,5 @@
-FROM node:18.9.0
+FROM node:20.8.0
 RUN apt-get update -y
-#RUN apt-get install -y openssl/stable-security
 
 WORKDIR /app
 # hack to avoid https://github.com/npm/cli/issues/4838
