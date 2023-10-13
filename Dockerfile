@@ -8,6 +8,7 @@ RUN mkdir /app/npmlogs && chown -R 1000660000 /app/npmlogs
 COPY package.json ./
 RUN npm install
 COPY . /app
+RUN chown -R 1000660000 /app/npmlogs/.npm
 
 CMD [ "npm", "start"]
 
