@@ -1,4 +1,4 @@
-FROM node:20.8.0
+FROM node:22.2.0
 RUN apt-get update -y
 
 WORKDIR /app
