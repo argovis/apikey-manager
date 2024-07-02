@@ -9,7 +9,6 @@ const mongoDB = "mongodb://database/argo" // EV this later
 const mongooseOptions = {
   useNewUrlParser: true,
   useUnifiedTopology: true,
-  keepAlive: true,
   connectTimeoutMS: 30000,
   maxPoolSize: 2
 };
