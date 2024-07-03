@@ -1,5 +1,5 @@
 FROM node:22.2.0
-RUN apt-get update -y
+RUN apt-get update -y && apt-get upgrade -y
 
 WORKDIR /app
 # hack to avoid https://github.com/npm/cli/issues/4838
