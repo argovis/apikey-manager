@@ -14,13 +14,13 @@
 		<div class='container' style='padding: 0 10vw 0 10vw;'>
 			<h1>Argovis API Key Management</h1>
 
-			<p>In order to allocate our limited resources fairly to all our users, API requests should be accompanied by a free <i>API key</i> that identifies the requester, allowing us to prevent anyone from making so many requests so quickly that they make Argovis unusable for everyone else. Choose 'New Account Registration' below to get started.</p>
+			<p>In order to allocate our limited resources fairly to all our users, API requests should be accompanied by a free <i>API key</i> that identifies the requester, allowing us to prevent anyone from making so many requests so quickly that they make Argovis unusable for everyone else. Fill out the form below to get yours.</p>
 
 			<p>In general, requests made in series (that is, letting your first request finish before issuing the next), should resolve without being cut off by the rate limiter, indefinitely. Making requests in parallel is also possible; exactly how many will be allowed is a function of their estimated size and complexity. Things that reduce estimated request size (and therefore allow you to make more such requests in less time) are:</p>
 
 			<ul>
-				<li>Requesting only metadata or vocabulary data</li>
 				<li>Limiting data requests to small geographic and / or short temporal regions</li>
+                <li>Requesting only metadata or vocabulary data</li>
 				<li>Not including per-level measurements in data requests (ie by omitting the <code>data</code> key)</li>
 				<li>Requesting individual data documents by ID</li>
 				<li>Requesting small sets of data by groups such as platform or WOCE line as applicable</li>
@@ -39,8 +39,6 @@
                     <input type='text' id='last' name='last' required="required" class="form-control">
                     <label for="last" class="form-label">Affiliation:</label>
                     <input type='text' id='affiliation' name='affiliation' class="form-control">
-                    <label for="token" class="form-label">Choose your secret token:</label>
-                    <input type='text' id='token' name='token' required="required" class="form-control">
                     <button type="submit" class="btn btn-primary" style='margin-top:1em;'>Submit</button>
                 </form>
               </div>

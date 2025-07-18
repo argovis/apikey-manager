@@ -12,7 +12,11 @@
 		</nav>
 
 		<div class='container' style='padding: 0 10vw 0 10vw;'>
-			<p>You have successfully registered an API key!</p>
+            <p>Your API key is:</p>
+            <p><b style="font-family: monospace;" id="apiKey"><%= key %></b></p>
+            <button class="btn btn-primary" onclick="copyToClipboard()">Copy to clipboard</button>
+            <p id="copyStatus" style="color: green;"></p>
+            <p>This is the only time we will show you this key; keep it secret, and keep it safe.</p>
             <p>Use this anywhere an Argovis API key or token is requested:</p>
             <ul>
                 <li>In the API Key field when searching for data on <a href="https://argovis.colorado.edu">argovis.colorado.edu</a></li>
@@ -25,4 +29,19 @@
 		  <div class="text-center p-4" style="margin-top: 1em;">© 2025 Argovis</div>
 		</footer>
 	</body>
+
+    <script>
+        function copyToClipboard() {
+          const key = document.getElementById('apiKey').innerText.trim();
+          navigator.clipboard.writeText(key).then(() => {
+            document.getElementById('copyStatus').textContent = "Copied!";
+            setTimeout(() => {
+              document.getElementById('copyStatus').textContent = "";
+            }, 2000);
+          }).catch(err => {
+            console.error('Failed to copy:', err);
+            document.getElementById('copyStatus').textContent = "Failed to copy.";
+          });
+        }
+        </script>
 </html>

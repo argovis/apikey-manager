@@ -17,24 +17,17 @@ app.get('/', function(req, res, next) {
 
 app.post('/register_key', upload.none(), function(req, res, next){
 
-    let k = crypto.createHash('sha256').update(req.body.token).digest('hex');
+    let k = crypto.randomBytes(20).toString('hex');
     user.create({
         first: req.body.first, 
         last: req.body.last, 
         affiliation: req.body.affiliation, 
         key: k, 
         tokenValid: 1})
-    .then(()=>res.render('reg-success'))
+    .then(()=>res.render('reg-success', { key: k }))
     .catch(function(response){
-            if(response.code == 11000){
-                // dupe registration
-                res.render('reg-dupe')
-            } else{
-                console.log('Excpetion when registering user key ' + k + ":")
-                console.log(response)
-                res.render('fail')
-            }
-        })
+            res.render('fail')
+    })
 });
 
 module.exports = app;
