@@ -6,7 +6,6 @@ const UserSchema = Schema(
     first: {type: String, required: true},
     last: {type: String, required: true},
     affiliation: {type: String, required: false},
-    email: {type: String, required: true},
     key: {type: String, required: true},
     tokenValid: {type: Number, required: true}
   },
