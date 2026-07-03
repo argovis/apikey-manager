@@ -7,8 +7,6 @@ const port = 3030;
 mongoose.Promise = global.Promise;
 const mongoDB = "mongodb://database/argo" // EV this later
 const mongooseOptions = {
-  useNewUrlParser: true,
-  useUnifiedTopology: true,
   connectTimeoutMS: 30000,
   maxPoolSize: 2
 };
