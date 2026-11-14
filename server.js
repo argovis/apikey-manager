@@ -5,7 +5,7 @@ const port = 3030;
 
 // mongodb config and connection //////////////////
 mongoose.Promise = global.Promise;
-const mongoDB = "mongodb://database/argo" // EV this later
+const mongoDB = process.env.MONGOCONNECT  //"mongodb://database/argo" // EV this later
 const mongooseOptions = {
   connectTimeoutMS: 30000,
   maxPoolSize: 2
