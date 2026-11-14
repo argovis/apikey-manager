@@ -1,6 +1,6 @@
 Argovis key manager
 
-A simple widget to CRUD api keys for Argovis. Requires a Sendgrid API token to manage emails to users.
+A simple widget to create api keys for Argovis.
 
 Populates keys in the `user` table, `argo` db in mongo.
 
